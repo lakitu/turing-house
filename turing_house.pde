@@ -1,25 +1,34 @@
-int room = 0;
+int activeRoom;
 Player p;
 boolean[] pressed = new boolean[4]; // [0] = left, [1] = up, [2] = right, [3] = down
+Room[] rooms;
 
 void setup() {
   size(1200, 800);
   p = new Player(width/2, height/2);
+  
+  activeRoom = 0;
+  rooms = new Room[5]; // number of rooms
+  rooms[0] = new EntranceRoom();
+  
+  // test code
 }
 
 void draw() {
   background(255);
-  //if (room == 0)
-  //  renderOpening();
-  if (room == 1) CryptoRoom.render();
-  if (room == 2) LogicRoom.render();
-  if (room == 3) PuzzleRoom.render();
+  rooms[activeRoom].render();
 
   p.render();
   
-  println(pressed);
 }
 
+void nextRoom() {
+  activeRoom++;
+  if (activeRoom == 1) rooms[1] = new CryptoRoom();
+  else if (activeRoom == 2) rooms[2] = new LogicRoom();
+  else if (activeRoom == 3) rooms[3] = new PuzzleRoom();
+  else if (activeRoom == 4) rooms[4] = new VictoryRoom();
+}
 
 
 void keyPressed() {

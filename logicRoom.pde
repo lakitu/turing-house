@@ -1,11 +1,11 @@
-static class LogicRoom extends Room {
+class LogicRoom extends Room {
   
   
-  public static void move() {
+  public void move() {
     
   }
   
-  public static void display() {
+  public void display() {
     
   }
   

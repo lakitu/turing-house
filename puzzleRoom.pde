@@ -1,11 +1,19 @@
-static class PuzzleRoom extends Room {
+class PuzzleRoom extends Room {
+  // chess puzzle
+  boolean showingPuzzle, puzzleSolved;
   
-  
-  public static void display() {
+  PuzzleRoom() {
+    showingPuzzle = false;
+    puzzleSolved = false;
     
   }
   
-  public static void move() {
+  
+  public void display() {
+    
+  }
+  
+  public void move() {
     
   }
   

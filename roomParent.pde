@@ -1,8 +1,8 @@
-public static class Room {
+public class Room {
   
-  public static void display() {}
-  public static void move() {}
-  public static void render() {
+  public void display() {}
+  public void move() {}
+  public void render() {
     display();
     move();
   }

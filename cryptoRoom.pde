@@ -1,11 +1,11 @@
-static class CryptoRoom extends Room {
+class CryptoRoom extends Room {
   
   
-  public static void display() {
+  public void display() {
     
   }
   
-  public static void move() {
+  public void move() {
     
   }
   

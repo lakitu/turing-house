@@ -20,6 +20,8 @@ void setup() {
   rooms[0] = new EntranceRoom();
 
   // test code
+  activeRoom = 3;
+  rooms[3] = new PuzzleRoom();
 }
 
 void draw() {

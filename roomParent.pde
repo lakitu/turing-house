@@ -27,9 +27,8 @@ public class Room {
     getTexts.start();
   }
 
-  private void displayBackground() {
+  public void displayBackground() {
     // set up walls
-    //stroke(255);
     rectMode(CORNER);
 
     color lightBrick = #b14434;

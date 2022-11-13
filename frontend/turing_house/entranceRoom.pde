@@ -10,7 +10,7 @@ public class EntranceRoom extends Room {
     by = t.y;
     bw = width/2-t.w;
     bh = t.h;
-    playerPos = player.getPosition();
+    playerPos = new int[] {0, 0};
   }
   
   boolean hoveringOverEnter() {

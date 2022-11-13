@@ -2,6 +2,7 @@ import processing.net.*;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.net.URLConnection;
+import java.io.InputStreamReader;
 
 String url = "https://50d4-128-197-29-253.ngrok.io";
 
@@ -16,15 +17,18 @@ String phoneNumber;
 
 void setup() {
   size(1200, 800);
-  player = new Player(width/2, height/2, new int[] {0, 0, width, height});
 
   activeRoom = 0;
   rooms = new Room[5]; // number of rooms
   rooms[0] = new EntranceRoom();
 
   // test code
-  activeRoom = 2;
-  rooms[2] = new LogicRoom();
+  activeRoom = 3;
+  //rooms[4] = new VictoryRoom();
+
+  // real code
+  player = new Player(width/2, height/2, new int[] {0, 0, width, height});
+  nextRoom();
 }
 
 void draw() {
@@ -33,6 +37,7 @@ void draw() {
 
   player.render();
   keyReleased = false;
+  println(frameRate);
 }
 
 void nextRoom() {

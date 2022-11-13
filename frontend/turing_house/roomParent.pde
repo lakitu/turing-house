@@ -16,6 +16,7 @@ public class Room {
   int[][] panelColors;
 
   Room() {
+<<<<<<< HEAD
     this(new int[] {150, 100, 1200-150, 800});
     
   }
@@ -23,6 +24,10 @@ public class Room {
   Room(int[] _bounds) {
     boundaries = _bounds;
 
+=======
+    boundaries = new int[] {150, 100, 1200-150, 800};
+    
+>>>>>>> 29707808b67599b84510441492406a0ac217a435
     roomSolved = false;
     solveFrame = -1000;
     animateSliding = true;

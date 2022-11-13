@@ -1,16 +1,24 @@
-int activeRoom;
-Player p;
-boolean[] pressed = new boolean[4]; // [0] = left, [1] = up, [2] = right, [3] = down
+import processing.net.*;
+import java.net.URL;
+import java.net.HttpURLConnection;
+import java.net.URLConnection;
+
 Room[] rooms;
+Player player;
+final String[] paths = new String[] {"/entrance", "/crypto", "/logic", "/puzzle", "/victory"};
+boolean[] pressed = new boolean[4]; // [0] = left, [1] = up, [2] = right, [3] = down
+boolean keyReleased = false;
+int activeRoom;
+
 
 void setup() {
   size(1200, 800);
-  p = new Player(width/2, height/2);
-  
+  player = new Player(width/2, height/2, new int[] {0, 0, width, height});
+
   activeRoom = 0;
   rooms = new Room[5]; // number of rooms
   rooms[0] = new EntranceRoom();
-  
+
   // test code
 }
 
@@ -18,8 +26,8 @@ void draw() {
   background(255);
   rooms[activeRoom].render();
 
-  p.render();
-  
+  player.render();
+  keyReleased = false;
 }
 
 void nextRoom() {
@@ -40,6 +48,7 @@ void keyPressed() {
 }
 
 void keyReleased() {
+  keyReleased = true;
   char[] letters = new char[] {'a', 'w', 'd', 's'};
   char[] arrows = new char[] {LEFT, UP, RIGHT, DOWN};
   for (int i = 0; i < 4; i++) {

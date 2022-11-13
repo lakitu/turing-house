@@ -1,6 +1,5 @@
 class PuzzleRoom extends Room {
   // chess puzzle
-  public boolean puzzleSolved;
   public final color[] boardColors = new color[] {#ffffdd, #86a666};
   int[] boundaries = new int[] {150, 100, 1200-150, 800};
   int boardSize = 600;
@@ -8,11 +7,9 @@ class PuzzleRoom extends Room {
   PShape blackPawn, blackRook, blackKnight, blackBishop, blackQueen, blackKing, whitePawn, whiteRook, whiteKnight, whiteBishop, whiteQueen, whiteKing;
   ArrayList<Piece> pieces;
   int moveNum;
-  int mateFrame = 0;
 
   PuzzleRoom() {
     super();
-    puzzleSolved = false;
 
     player = new Player(width/2, height, boundaries);
     pieces = new ArrayList<Piece>();
@@ -57,71 +54,6 @@ class PuzzleRoom extends Room {
     addPiece(whiteRook, 7, 7, 21);
   }
 
-  private void displayBackground() {
-    // set up walls
-    //stroke(255);
-    rectMode(CORNER);
-
-    color lightBrick = #b14434;
-    color darkBrick = #4b2122;
-    color mortar = #b9bcab + #222222;
-    int brickHeight = 10, brickWidth = 15;
-
-    stroke(mortar);
-    strokeWeight(2);
-    // side walls
-    int sideWidth = boundaries[0];
-    for (int i = 0; brickHeight * i < height; i++) {
-      for (int j = 0; brickWidth * j <= sideWidth; j++) {
-        fill(lerpColor(lightBrick, darkBrick, noise(0.1*i + 0.01*j)));
-        rect(j * brickWidth - (i % 2)*brickWidth/2, i * brickHeight, brickWidth, brickHeight);
-
-        fill(lerpColor(lightBrick, darkBrick, noise(100 + 0.1*i + 0.01*j)));
-        if (puzzleSolved && i > 50 && i < 60) {
-          rect(width - ((j+1) * brickWidth)+(i%2)*brickWidth/2 + (frameCount - mateFrame)/2, i * brickHeight, brickWidth, brickHeight);
-          continue;
-        }
-        rect(width - ((j+1) * brickWidth)+(i%2)*brickWidth/2, i * brickHeight, brickWidth, brickHeight);
-      }
-    }
-
-    // top walls
-    int topHeight = boundaries[1];
-    for (int i = 0; brickHeight * i < topHeight; i++) {
-      for (int j = 0; brickWidth * j < width; j++) {
-        fill(lerpColor(lightBrick, darkBrick, noise(0.1*i + 0.01*j)));
-        rect(j * brickWidth - (i % 2)*brickWidth/2, i * brickHeight, brickWidth, brickHeight);
-      }
-    }
-
-    // cover brick edges
-    fill(255);
-    stroke(0);
-    noStroke();
-    rectMode(CORNERS);
-    //int[] corners = new int[] {sideWidth-brickWidth, topHeight, width-sideWidth+brickWidth, height};
-    rect(boundaries[0], boundaries[1], boundaries[2], boundaries[3]);
-
-
-
-    // wood floor
-    strokeWeight(1);
-    stroke(0);
-    rectMode(CORNER);
-
-    float panelLength = (boundaries[2]-boundaries[0])/10., panelHeight = 20;
-    color lightPanel = #653332;
-    color darkPanel = #3d1c1b;
-    stroke(lightPanel);
-    //fill(darkPanel);
-    for (int y = boundaries[3]; y >= boundaries[1]; y -= panelHeight) {
-      for (int x = boundaries[0]; x <= boundaries[2]-panelLength; x += panelLength) {
-        fill(lerpColor(lightPanel, darkPanel, noise(x + 100*y)));
-        rect(x, y, panelLength, panelHeight);
-      }
-    }
-  }
-
   private void displayBoard() {
     // chessboard
     stroke(0);
@@ -160,8 +92,8 @@ class PuzzleRoom extends Room {
     if (moveNum == 2 && ((piece.pieceCode == 21 && newRow == 4 && newCol == 7) || (moveNum == 2 && piece.pieceCode == 14 && newRow == 6 && newCol == 4))) { // mate with rook or knight
       piece.setSquare(newRow, newCol);
       moveNum++;
-      puzzleSolved = true;
-      mateFrame = frameCount;
+      roomSolved = true;
+      solveFrame = frameCount;
       int[] tempPos = player.getPosition();
       player = new Player(tempPos[0], tempPos[1], new int[] {boundaries[0], boundaries[1], width, boundaries[3]});
     }
@@ -171,7 +103,7 @@ class PuzzleRoom extends Room {
     displayBackground();
     displayBoard();
     for (int i = pieces.size()-1; i >= 0; i--) pieces.get(i).display(this);
-    if (puzzleSolved) {
+    if (roomSolved) {
       textAlign(CENTER, CENTER);
       textSize(50);
       fill(255);
@@ -239,7 +171,7 @@ public class Piece {
   }
 
   void display(PuzzleRoom g) {
-    if (g.puzzleSolved) pickedUp = false;
+    if (g.roomSolved) pickedUp = false;
     if (!pickedUp) {
       shapeMode(CORNER);
       shape(this.self, x+.1*boardData[2], y+.1*boardData[2], 0.8*boardData[2], 0.8*boardData[2]);
@@ -270,7 +202,7 @@ public class Piece {
       pop();
     }
 
-    if (touchingPerson() && isWhite && !g.puzzleSolved) {
+    if (touchingPerson() && isWhite && !g.roomSolved) {
       textAlign(CENTER, CENTER);
       textSize(50);
       fill(255);

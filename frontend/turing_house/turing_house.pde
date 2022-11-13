@@ -23,20 +23,9 @@ void setup() {
   rooms[0] = new EntranceRoom();
 
   // test code
-<<<<<<< HEAD:frontend/turing_house/turing_house.pde
-  //activeRoom = 3;
-=======
-  activeRoom = 3;
->>>>>>> 29707808b67599b84510441492406a0ac217a435:turing_house.pde
-  //rooms[4] = new VictoryRoom();
 
   // real code
   player = new Player(width/2, height/2, new int[] {0, 0, width, height});
-<<<<<<< HEAD:frontend/turing_house/turing_house.pde
-  //nextRoom();
-=======
-  nextRoom();
->>>>>>> 29707808b67599b84510441492406a0ac217a435:turing_house.pde
 }
 
 void draw() {
@@ -45,12 +34,6 @@ void draw() {
 
   player.render();
   keyReleased = false;
-<<<<<<< HEAD:frontend/turing_house/turing_house.pde
-  println(player.SIZE);
-  //println(frameRate);
-=======
-  println(frameRate);
->>>>>>> 29707808b67599b84510441492406a0ac217a435:turing_house.pde
 }
 
 void nextRoom() {

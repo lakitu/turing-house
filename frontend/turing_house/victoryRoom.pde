@@ -32,10 +32,7 @@ public class VictoryRoom extends Room {
     if (dist(playerPos[0], playerPos[1], width/2, height/2) < 200 && !roomSolved) {
       link(url);
       roomSolved = true;
-<<<<<<< HEAD
       exit();
-=======
->>>>>>> 29707808b67599b84510441492406a0ac217a435
     }
   }
 }

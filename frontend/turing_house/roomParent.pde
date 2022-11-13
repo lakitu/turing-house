@@ -16,18 +16,13 @@ public class Room {
   int[][] panelColors;
 
   Room() {
-<<<<<<< HEAD
     this(new int[] {150, 100, 1200-150, 800});
     
   }
 
   Room(int[] _bounds) {
     boundaries = _bounds;
-
-=======
-    boundaries = new int[] {150, 100, 1200-150, 800};
     
->>>>>>> 29707808b67599b84510441492406a0ac217a435
     roomSolved = false;
     solveFrame = -1000;
     animateSliding = true;
@@ -67,19 +62,19 @@ public class Room {
         conn.setRequestMethod(method);
         conn.connect();
         int status = conn.getResponseCode();
-        if (status == 418) {
-          BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-          String inputLine;
-          StringBuffer response = new StringBuffer();
+        //if (status == 418) {
+        //  BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        //  String inputLine;
+        //  StringBuffer response = new StringBuffer();
 
-          while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-          }
-          in.close();
+        //  while ((inputLine = in.readLine()) != null) {
+        //    response.append(inputLine);
+        //  }
+        //  in.close();
 
-          // print result
-          System.out.println(response.toString());
-        }
+        //  // print result
+        //  System.out.println(response.toString());
+        //}
         println(path + " returned a code of " + status);
       }
       catch (Exception e) {

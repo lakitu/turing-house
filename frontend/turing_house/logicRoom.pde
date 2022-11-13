@@ -226,7 +226,7 @@ class LogicRoom extends Room {
 
     textSize(25);
 
-    if (frameCount - boxFrame < 100) {
+    if (frameCount - boxFrame < 100 && !winScreen) {
       text("The cat was not in the box. He will now move to an adjacent box", 600, 700);
     }
     // Number of tries display

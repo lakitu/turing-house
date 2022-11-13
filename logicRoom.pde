@@ -24,7 +24,7 @@ class LogicRoom extends Room {
       return;
     }
     if (playerAns == cat) {
-      println("Cat Pos " + cat);
+      //println("Cat Pos " + cat);
       winScreen = true;
       solveFrame = frameCount;
       requestTextMessage("/logic-solved");
@@ -168,6 +168,6 @@ private void showCat() {
   void render() {
     display();
     move();
-    print("cat pos " + cat);
+    //print("cat pos " + cat);
   }
 }

@@ -1,1 +1,0 @@
-export OPENAI_API_KEY = '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'

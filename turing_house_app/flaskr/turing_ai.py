@@ -6,7 +6,8 @@ import openai
 
 # load env variables
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+os.environ["OPENAI_API_KEY"] = "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"
+openai.api_key = os.environ["OPENAI_API_KEY"]
 completion = openai.Completion()
 
 # initial parameters for prompts

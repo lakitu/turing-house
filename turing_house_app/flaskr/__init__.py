@@ -15,6 +15,7 @@ try:
 except:
     pass
 
+user_num = '+12035131620'
 
 # send user messages throughout game
 def send_sms(to, message_body, media_url=None):
@@ -40,8 +41,9 @@ def home():
 # entrance room page
 @app.route('/entrance', methods=["GET", "POST"])
 def entrance():
-    user_num = '+1' + str(request.args.get('pn'))
-    db.add_user(user_num)
+    #user_num = '+1' + str(request.args.get('pn'))
+    print(user_num)
+    # db.add_user(user_num)
     return 'Entrance room'
 
 @app.route('/sms', methods=["GET", "POST"])
@@ -50,18 +52,18 @@ def sms_receive():
     return "Hi there!"
 
 
-
 # cryptography room page
 @app.route('/crypto')
 def crypto():
-    user_num = '+1' + str(request.args.get('pn'))
+    #user_num = '+1' + str(request.args.get('pn'))
+    print(user_num)
     send_sms(user_num, messages.ent_message())
     send_sms(user_num, messages.crpt_message())
     return "Cryptography room"
 
 @app.route('/crypto-request')
 def crypto_request():
-    user_num = '+1' + str(request.args.get('pn'))
+    #user_num = '+1' + str(request.args.get('pn'))
     letter = db.check_letter(user_num)
     if letter:
         return letter
@@ -71,7 +73,8 @@ def crypto_request():
 # logic room question page
 @app.route('/logic-question')
 def logic_question():
-    user_num = '+1' + str(request.args.get('pn'))
+    #user_num = '+1' + str(request.args.get('pn'))
+    print(user_num)
     send_sms(user_num, messages.lgc_message1())
     send_sms(user_num, messages.lgc_message2(), media_url="https://cdn.discordapp.com/attachments/1041206701438816319/1041209230344077323/cat.png")
     return "Logic room 1"
@@ -79,14 +82,15 @@ def logic_question():
 # logic room answer page
 @app.route('/logic-solved')
 def logic_solved():
-    user_num = '+1' + str(request.args.get('pn'))
+    #user_num = '+1' + str(request.args.get('pn'))
     send_sms(user_num, messages.lgc_message_solve(), media_url="https://cdn.discordapp.com/attachments/1041206701438816319/1041210449720508437/catkey.png")
     return "Logic room 2"
 
 # puzzle room page
 @app.route("/puzzle")
 def puzzle():
-    user_num = '+1' + str(request.args.get('pn'))
+    #user_num = '+1' + str(request.args.get('pn'))
+    print(user_num)
     send_sms(user_num, messages.pz_message1())
     send_sms(user_num, messages.pz_message2())
     return "Puzzle room"
@@ -94,7 +98,8 @@ def puzzle():
 # victory room page
 @app.route('/victory')
 def victory():
-    user_num = '+1' + str(request.args.get('pn'))
+    #user_num = '+1' + str(request.args.get('pn'))
+    print(user_num)
     send_sms(user_num, messages.vct_message())
 
 

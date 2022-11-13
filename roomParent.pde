@@ -2,17 +2,23 @@ public class Room {
   int[] boundaries = new int[] {150, 100, 1200-150, 800};
   boolean roomSolved;
   int solveFrame;
+  boolean animateSliding;
 
   Room() {
     roomSolved = false;
     solveFrame = -1000;
-    
+    animateSliding = true;
+
     // get the text messages
+    requestTextMessage(paths[activeRoom]);
+  }
+
+  void requestTextMessage(String path) {
     Thread getTexts = new Thread(() -> {
       // initialize the network client
       String url = "https://3eb6-128-197-29-253.ngrok.io";
       try {
-        URL urlObject = new URL(url + paths[activeRoom]);
+        URL urlObject = new URL(url + path);
         HttpURLConnection conn = (HttpURLConnection) urlObject.openConnection();
         conn.setRequestMethod("GET");
         conn.connect();
@@ -46,7 +52,7 @@ public class Room {
         rect(j * brickWidth - (i % 2)*brickWidth/2, i * brickHeight, brickWidth, brickHeight);
 
         fill(lerpColor(lightBrick, darkBrick, noise(100 + 0.1*i + 0.01*j)));
-        if (roomSolved && i > 50 && i < 60) {
+        if (roomSolved && animateSliding && i > 50 && i < 60) {
           rect(width - ((j+1) * brickWidth)+(i%2)*brickWidth/2 + (frameCount - solveFrame)/2, i * brickHeight, brickWidth, brickHeight);
           continue;
         }

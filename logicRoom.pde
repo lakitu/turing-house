@@ -1,6 +1,8 @@
 class LogicRoom extends Room {
   
-  
+  LogicRoom() {
+    super();
+  }
   public void move() {
     
   }

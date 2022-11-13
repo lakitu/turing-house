@@ -5,7 +5,8 @@ import java.net.URLConnection;
 
 Room[] rooms;
 Player player;
-final String[] paths = new String[] {"/entrance", "/crypto", "/logic", "/puzzle", "/victory"};
+final String[] paths = new String[] {"/entrance", "/crypto", "/logic-question", "/puzzle", "/victory"};
+// logic-question, logic-solved
 boolean[] pressed = new boolean[4]; // [0] = left, [1] = up, [2] = right, [3] = down
 boolean keyReleased = false;
 int activeRoom;

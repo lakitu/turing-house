@@ -3,6 +3,8 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 import java.net.URLConnection;
 
+String url = "https://50d4-128-197-29-253.ngrok.io";
+
 Room[] rooms;
 Player player;
 final String[] paths = new String[] {null, "/crypto", "/logic-question", "/puzzle", "/victory"};
@@ -21,8 +23,8 @@ void setup() {
   rooms[0] = new EntranceRoom();
 
   // test code
-  //activeRoom = 3;
-  //rooms[3] = new PuzzleRoom();
+  activeRoom = 2;
+  rooms[2] = new LogicRoom();
 }
 
 void draw() {

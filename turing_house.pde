@@ -5,12 +5,12 @@ import java.net.URLConnection;
 
 Room[] rooms;
 Player player;
-final String[] paths = new String[] {"/entrance", "/crypto", "/logic-question", "/puzzle", "/victory"};
-// logic-question, logic-solved
+final String[] paths = new String[] {null, "/crypto", "/logic-question", "/puzzle", "/victory"};
+// /logic-solved
 boolean[] pressed = new boolean[4]; // [0] = left, [1] = up, [2] = right, [3] = down
 boolean keyReleased = false;
 int activeRoom;
-
+String phoneNumber;
 
 void setup() {
   size(1200, 800);
@@ -21,8 +21,8 @@ void setup() {
   rooms[0] = new EntranceRoom();
 
   // test code
-  activeRoom = 3;
-  rooms[3] = new PuzzleRoom();
+  //activeRoom = 3;
+  //rooms[3] = new PuzzleRoom();
 }
 
 void draw() {

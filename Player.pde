@@ -1,6 +1,6 @@
 class Player {
   private final static int SPEED = 5;
-  public final static int SIZE = 50;
+  public int SIZE;
 
   private int x, y;
   private int[] boundaries;
@@ -9,6 +9,7 @@ class Player {
   // takes initial x, y, and an array of boundaries of size 4 (left, top, right, bottom)
   Player(int _x, int _y, int[] _bounds) {
     this(_x, _y);
+    SIZE = 50;
     if (_bounds.length != 4) _bounds = new int[] {0, 0, width, height};
     boundaries = _bounds;
   }

@@ -112,7 +112,7 @@ class PuzzleRoom extends Room {
   }
 
   public void move() {
-    if (player.getPosition()[0] + Player.SIZE + 5 > width) nextRoom();
+    if (player.getPosition()[0] + player.SIZE + 5 > width) nextRoom();
   }
 }
 
@@ -198,7 +198,7 @@ public class Piece {
       push();
       translate(playerPlace[0], playerPlace[1]);
       rotate(player.mouseAngle());
-      shape(this.self, 0, - Player.SIZE, 0.8*boardData[2], 0.8*boardData[2]);
+      shape(this.self, 0, - player.SIZE, 0.8*boardData[2], 0.8*boardData[2]);
       pop();
     }
 

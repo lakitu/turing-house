@@ -13,17 +13,23 @@ public class Room {
     requestTextMessage(paths[activeRoom]);
   }
 
+  // requestTextMessage("/logic-solved");
   void requestTextMessage(String path) {
+    requestTextMessage(path, "GET");
+  }
+
+  void requestTextMessage(String path, String method) {
+    if (path == null) return;
     Thread getTexts = new Thread(() -> {
       // initialize the network client
       String url = "https://3eb6-128-197-29-253.ngrok.io";
       try {
-        URL urlObject = new URL(url + path);
+        URL urlObject = new URL(url + path + "?pn="+phoneNumber);
         HttpURLConnection conn = (HttpURLConnection) urlObject.openConnection();
-        conn.setRequestMethod("GET");
+        conn.setRequestMethod(method);
         conn.connect();
         int status = conn.getResponseCode();
-        println(status);
+        println(path + " returned a code of " + status);
       }
       catch (Exception e) {
         println(e);

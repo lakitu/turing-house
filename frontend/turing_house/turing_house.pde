@@ -2,19 +2,21 @@ import processing.net.*;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.net.URLConnection;
+import java.io.InputStreamReader;
+
+String url = "https://50d4-128-197-29-253.ngrok.io";
 
 Room[] rooms;
 Player player;
-final String[] paths = new String[] {"/entrance", "/crypto", "/logic-question", "/puzzle", "/victory"};
-// logic-question, logic-solved
+final String[] paths = new String[] {null, "/crypto", "/logic-question", "/puzzle", "/victory"};
+// /logic-solved
 boolean[] pressed = new boolean[4]; // [0] = left, [1] = up, [2] = right, [3] = down
 boolean keyReleased = false;
 int activeRoom;
-
+String phoneNumber;
 
 void setup() {
   size(1200, 800);
-  player = new Player(width/2, height/2, new int[] {0, 0, width, height});
 
   activeRoom = 0;
   rooms = new Room[5]; // number of rooms
@@ -22,7 +24,11 @@ void setup() {
 
   // test code
   activeRoom = 3;
-  rooms[3] = new PuzzleRoom();
+  //rooms[4] = new VictoryRoom();
+
+  // real code
+  player = new Player(width/2, height/2, new int[] {0, 0, width, height});
+  nextRoom();
 }
 
 void draw() {
@@ -31,6 +37,7 @@ void draw() {
 
   player.render();
   keyReleased = false;
+  println(frameRate);
 }
 
 void nextRoom() {

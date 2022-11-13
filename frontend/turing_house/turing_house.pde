@@ -23,12 +23,12 @@ void setup() {
   rooms[0] = new EntranceRoom();
 
   // test code
-  activeRoom = 3;
+  //activeRoom = 3;
   //rooms[4] = new VictoryRoom();
 
   // real code
   player = new Player(width/2, height/2, new int[] {0, 0, width, height});
-  nextRoom();
+  //nextRoom();
 }
 
 void draw() {
@@ -37,7 +37,8 @@ void draw() {
 
   player.render();
   keyReleased = false;
-  println(frameRate);
+  println(player.SIZE);
+  //println(frameRate);
 }
 
 void nextRoom() {

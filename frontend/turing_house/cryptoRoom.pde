@@ -7,26 +7,32 @@ class CryptoRoom extends Room {
   private int[][] rects = {{rand.nextInt(1000) + 100, rand.nextInt(550)}, {rand.nextInt(1000) + 100,rand.nextInt(550)}, {rand.nextInt(1000) + 100, rand.nextInt(550)}, {rand.nextInt(1000) + 100, rand.nextInt(550)}, {rand.nextInt(1000) + 100,rand.nextInt(550)}, {rand.nextInt(1000) + 100, rand.nextInt(550)}};
   private String[] words = {
     "turing",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    ""
+    //"",
+    //"",
+    //"",
+    //"",
+    //"",
+    //"",
+    //"",
+    //"",
+    //""
   };
+  
+  CryptoRoom() {
+    super(new int[] {70, 100, 1200-70, 800});
+    player = new Player(width/2, height/2);
+  }
   
   
   
   public boolean isOn() {
-    int[] pos = p.getPosition();
+    int[] pos = player.getPosition();
+    textAlign(CENTER, CENTER);
     for (int i = 0; i < rects.length; i++) {
       if (pos[0] > rects[i][0] && pos[0] < (rects[i][0] + 60)) {
          if (pos[1] > rects[i][1] && pos[1] < (rects[i][1] + 60)) {
             if (picked == -1) {
-            text("Press the CTRL key to pick up a letter", 180, 770);
+            text("Press the CTRL key to pick up a letter", width/2, 750);
             }
             if (keyCode == CONTROL) {
               picked = i;
@@ -39,20 +45,20 @@ class CryptoRoom extends Room {
   }
 
   public void pickup() {
-    int[] pos = p.getPosition();
+    int[] pos = player.getPosition();
     if (picked != -1) {
       if (keyCode == ALT) {
         picked = -1;
       }
       else {
-      text("Press the ALT key to put down a letter", 170, 770);
+      text("Press the ALT key to put down a letter", width/2, 750);
       rects[picked] = pos;
       }
     }
   }
   
   public void drop() {
-    int[] pos = p.getPosition();
+    int[] pos = player.getPosition();
     for (int i = 0; i < rects.length; i++) {
       if (pos[0] > (100 + (i * 150)) && pos[0] < (200 + (i * 150))) {
         if (pos[1] > 600 && pos[1] < 700) {

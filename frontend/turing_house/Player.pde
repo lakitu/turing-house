@@ -9,13 +9,13 @@ class Player {
   // takes initial x, y, and an array of boundaries of size 4 (left, top, right, bottom)
   Player(int _x, int _y, int[] _bounds) {
     this(_x, _y);
-    SIZE = 50;
     if (_bounds.length != 4) _bounds = new int[] {0, 0, width, height};
     boundaries = _bounds;
   }
 
   Player(int _x, int _y) {
     setPosition(_x, _y);
+    SIZE = 50;
     initTime = millis();
   }
 
@@ -53,6 +53,7 @@ class Player {
     if (pressed[2]) x += SPEED;
     if (pressed[3]) y += SPEED;
 
+    if (boundaries == null) return;
     if (x - SIZE/2 < boundaries[0]) x = boundaries[0]+SIZE/2;
     if (x + SIZE/2 > boundaries[2]) x = boundaries[2]-SIZE/2;
     if (y - SIZE/2 < boundaries[1]) y = boundaries[1]+SIZE/2;

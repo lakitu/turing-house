@@ -16,8 +16,13 @@ public class Room {
   int[][] panelColors;
 
   Room() {
-    boundaries = new int[] {150, 100, 1200-150, 800};
+    this(new int[] {150, 100, 1200-150, 800});
     
+  }
+
+  Room(int[] _bounds) {
+    boundaries = _bounds;
+
     roomSolved = false;
     solveFrame = -1000;
     animateSliding = true;

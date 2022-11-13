@@ -1,11 +1,5 @@
 class LogicRoom extends Room {
   
-<<<<<<< HEAD
-  LogicRoom() {
-    super();
-  }
-  public void move() {
-=======
   
   boolean locked = false;
   PImage img;
@@ -21,7 +15,6 @@ class LogicRoom extends Room {
   LogicRoom() {
     super();
     player = new Player(600, 400, boundaries);
->>>>>>> 1a8def3 (logic room)
     
   }
 
@@ -36,7 +29,7 @@ class LogicRoom extends Room {
       solveFrame = frameCount;
       requestTextMessage("/logic-solved");
       
-      
+    
       
     } else {
       boxFrame = frameCount;
